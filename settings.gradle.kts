@@ -24,4 +24,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "MFA"
 include(":app")
- 
+include(":module_new")
