@@ -11,20 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MFA">
-
+        <activity
+            android:name=".DetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".SettingsActivity"
             android:exported="false" />
-
         <activity
             android:name=".CalcActivity"
             android:exported="false" />
-
         <activity
             android:name=".ProfileActivity"
-            android:exported="false" />
-
-        <!-- ЕДИНСТВЕННАЯ MainActivity (запускаемая) -->
+            android:exported="false" /> <!-- ЕДИНСТВЕННАЯ MainActivity (запускаемая) -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -32,9 +30,10 @@
             android:supportsPictureInPicture="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>

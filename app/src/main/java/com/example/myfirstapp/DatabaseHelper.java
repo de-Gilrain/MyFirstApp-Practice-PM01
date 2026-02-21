@@ -115,4 +115,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return task;
     }
+
+    public List<Task> searchTasks(String query) {
+        List<Task> tasks = new ArrayList<>();
+        try {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String selection = COLUMN_TITLE + " LIKE ?";
+            String[] selectionArgs = {"%" + query + "%"};
+            Cursor cursor = db.query(TABLE_TASKS, null, selection, selectionArgs, null, null, null);
+
+            if (cursor.moveToFirst()) {
+                do {
+                    Task task = new Task();
+                    task.setId(cursor.getInt(0));
+                    task.setTitle(cursor.getString(1));
+                    task.setDescription(cursor.getString(2));
+                    tasks.add(task);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            db.close();
+        } catch (Exception e) {
+            android.util.Log.e("DatabaseHelper", "Search error: " + e.getMessage());
+        }
+        return tasks;
+    }
+
+    public int getTasksCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_TASKS, null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+        db.close();
+        return count;
+    }
+
+    public int getTodayTasksCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(
+                "SELECT COUNT(*) FROM " + TABLE_TASKS + " WHERE date(" + COLUMN_ID + ") = date('now')",
+                null);
+        cursor.moveToFirst();
+        int count = cursor.getInt(0);
+        cursor.close();
+        db.close();
+        return count;
+    }
 }

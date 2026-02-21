@@ -5,21 +5,33 @@
     android:padding="16dp">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Главное меню"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:layout_marginBottom="24dp"/>
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Главное меню"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/themeSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Темная тема"/>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -36,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
-                android:text="Старт"/>
+                android:text="Старт"
+                android:background="?attr/selectableItemBackground"/>
 
             <Button
                 android:id="@+id/button_stop"
@@ -45,18 +58,19 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
-                android:text="Остановить"/>
+                android:text="Остановить"
+                android:background="?attr/selectableItemBackground"/>
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_change_color"
-            style="@style/CustomButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
             android:text="Поменять цвет фона"
-            android:textColor="#000000"/>
+            android:textColor="#000000"
+            android:background="?attr/selectableItemBackground"/>
 
         <ListView
             android:id="@+id/lvScreens"
@@ -65,25 +79,21 @@
             android:layout_marginBottom="32dp"/>
 
         <TextView
+            android:id="@+id/tvStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Всего задач: 0 | Сегодня добавлено: 0"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"/>
+
+        <TextView
             android:text="Управление задачами"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- НОВОЕ: Поле поиска -->
-        <EditText
-            android:id="@+id/etSearch"
-            android:hint="Поиск по названию..."
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
-
-        <Button
-            android:id="@+id/btnSearch"
-            android:text="Найти"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"/>
 
@@ -101,6 +111,38 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"/>
 
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="🔍 Поиск по названию задач"
+            android:inputType="text"
+            android:background="@drawable/search_background"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔍 Найти задачи"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"
+            android:background="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:id="@+id/tvStats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Всего задач: 0 | Сегодня добавлено: 0"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"/>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -113,6 +155,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="?attr/selectableItemBackground"
                 android:layout_marginEnd="4dp"/>
 
             <Button
@@ -122,7 +165,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"/>
+                android:layout_marginEnd="4dp"
+                android:background="?attr/selectableItemBackground"/>
 
             <Button
                 android:id="@+id/btnRefresh"
@@ -130,7 +174,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="4dp"/>
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackground"/>
         </LinearLayout>
 
         <ListView
@@ -152,7 +197,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:backgroundTint="#FF5722"/>
+                android:backgroundTint="#FF5722"
+                android:background="?attr/selectableItemBackground"/>
 
             <Button
                 android:id="@+id/btnClearSearch"
@@ -160,7 +206,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="4dp"/>
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackground"/>
         </LinearLayout>
 
     </LinearLayout>
